@@ -1,0 +1,52 @@
+<!--<textarea rows="6" [value]="'Text'"></textarea>
+ here we are doing property binding using [value]. [value] is same as value property in html but in angular it is written in square brackets and values are assingned in double and then single quotes -->
+<mat-card>
+  <form (submit)="onAddPost(postForm)" #postForm="ngForm"> <!--Here submit will behave as an event which will form listen whenever submit button is clicked.
+      So whenever form is submitted it will listen to onAddPost() which is created in post-create.component.ts
+      #postForm is the reference to the form. This syntax will give us access to the form object. ngForm gives access to the entire form-->
+
+      <mat-form-field>
+      <input matInput type="text" name="title" ngModel required placeholer="Post a title" #title="ngModel"> <!--#title="ngModel" is a refrence of title field, where ngModel gives access to the dada managed for that input-->
+      <mat-error *ngIf="title.invalid">{{"Please enter a title..."}}</mat-error> <!--here title is a reference-->
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput rows="6" name="content" ngModel required placeholder="Post Contents" #content="ngModel"></textarea>
+      <mat-error *ngIf="content.invalid">{{"Please enter a content..."}}</mat-error> <!--here content is a reference-->
+    </mat-form-field>
+    <button
+      mat-raised-button
+        color="accent"
+          type="submit">Save Post</button>
+  </form>
+
+</mat-card>
+
+
+
+
+
+
+          <!--Alternate way using 2 way binding-->
+
+<!--<mat-form-field>
+  <input matInput type="text" [(ngModel)]="enteredTitle">
+</mat-form-field>
+
+<mat-form-field>
+  <textarea matInput rows="6" [(ngModel)]="enteredContent"></textarea>
+  here we are doing two way binding. ngModel is an angular feature, its an directive. ngModel is inside FormsModule
+  ngModel will listen to the user input and emit(send) that data to us and also store new data in that textarea or give output
+  enteredValue is define inside post-create-compnent.ts
+</mat-form-field>
+<button
+  mat-raised-button
+    color="accent"
+      (click)="onAddPost()">Save Post</button>
+ onAddPost() is a function created in post-create-compnent.ts
+(click) is a event binding we are using
+<p> {{newPost}} </p>
+{{newPost}} here we are doing string interpolation. newPost is define in post-create-compnent.ts
+String interpolation is used for one way binding(component class to html file only)-->
+
+
